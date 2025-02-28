@@ -26,10 +26,7 @@ $profiles = Get-ChildItem -Path "C:\Users" -Directory
 
 foreach ($profile in $profiles) {
     $updatePath = Join-Path -Path $profile.FullName -ChildPath "AppData\Local\Microsoft\Teams\Update.exe"
-    # Define the registry path to check for Microsoft Teams installation
-    #If (((Test-Path "HKLM:\SOFTWARE\AXA\Applications\TeamsX64_1.6_Multi_V01") -or (Test-Path "C:\Program Files\Microsoft\Teams") -or (Test-Path $updatePath)  ) -eq $true) {
-    # Comando para desinstalar Microsoft Teams
-    #Write-Log "Microsoft Teams versión  está instalado. Procediendo a desinstalar"
+    
     Start-Process "msiexec.exe" -ArgumentList "/x {731F6BAA-A986-45A4-8936-7C3AAAAA760B} /quiet" -Wait
     # Obtener todos los usuarios en el dispositivo
     $TeamsUsers = Get-ChildItem -Path "$($ENV:SystemDrive)\Users"
